@@ -1,0 +1,15 @@
+FROM ruby:3.2.0
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY bashrc /root/.bashrc
+
+WORKDIR /app
+
+COPY app.rb /app/app.rb
+
+CMD ["/usr/local/bin/ruby", "app.rb"]

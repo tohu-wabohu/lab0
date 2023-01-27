@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  ruby32:
+    build:
+      context: .
+      dockerfile: Dockerfile.ruby32
+    hostname: ruby32
