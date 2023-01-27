@@ -57,6 +57,13 @@ function control(canvasId) {
     function draw() {
         x += dx;
         y += dy;
+
+        // keep the circle inside the canvas
+        if (y - radius <= 0) { y = radius; }
+        if (y + radius >= height) { y = height - radius; }
+        if (x - radius <= 0) { x = radius; }
+        if (x + radius >= width) { x = width - radius; }
+
         context.clearRect(0, 0, width, height);
         fillCircle(context, x, y, radius);
         window.requestAnimationFrame(draw);
