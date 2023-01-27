@@ -99,40 +99,42 @@ function matrix(canvasId) {
     const height = canvas.height;
     const matrixSize = 100;
     const speedLimit = 5;
-    const changeRate = 30;
+    const expireLimit = 30;
 
     context.font = "30px Arial";
 
     const A = [];
+    const C = 0 // character
+    const X = 1 // x position
+    const Y = 2 // Y position
+    const S = 3 // speed
+    const E = 4 // expire
 
     for (let i = 0; i < matrixSize; i++) {
-        c = String.fromCharCode(0x30A0 + Math.floor(Math.random() * 90));
-        x = Math.floor(Math.random() * width);
-        y = -10;
-        s = Math.floor(1 + Math.random() * speedLimit);
-        e = changeRate;  // expiration
-        A.push([c, x, y, s, e]);
+        A.push(['', 0, height + 1, 0, 0]);  // height + 1 to make sure new values are generated
     }
 
     function draw() {
         context.clearRect(0, 0, width, height);
         context.fillStyle = "black";
         context.fillRect(0, 0, width, height);
-        // console.log(A[0][0], A[0][1], A[0][2]);
         for (const I of A) {
-            context.fillStyle = greenColor(I[3]);
-            context.fillText(I[0], I[1], I[2] += I[3]);
-            I[4] -= (1 * I[3]);
-            if (I[4] < 0) {
-                I[0] = String.fromCharCode(0x30A0 + Math.floor(Math.random() * 90));
-                I[4] = changeRate;
+            if (I[Y] > height) {
+                I[C] = String.fromCharCode(0x30A0 + Math.random() * 90);
+                I[X] = Math.floor((Math.random() * (width + 10) - 10));
+                I[Y] = -10;
+                I[S] = Math.floor(1 + Math.random() * speedLimit);
+                I[E] = expireLimit;
             }
-            if (I[2] > height) {
-                I[0] = String.fromCharCode(0x30A0 + Math.random() * 90);
-                I[1] = Math.floor((Math.random() * width));
-                I[2] = -10;
-                I[3] = Math.floor(1 + Math.random() * speedLimit);
+
+            I[E] -= I[S];
+            if (I[E] < 0) {
+                I[C]  = String.fromCharCode(0x30A0 + Math.floor(Math.random() * 90));
+                I[E] = expireLimit;
             }
+
+            context.fillStyle = greenColor(I[S]);
+            context.fillText(I[C], I[X], I[Y] += I[S]);
         }
         window.requestAnimationFrame(draw);
     }
