@@ -4,6 +4,17 @@ function fillCircle(context, x, y, radius, color = "red") {
     context.fillStyle = color;
     context.fill();
 }
+
+function greenColor(i) {
+    switch (i) {
+        case 1: return "#005800";
+        case 2: return "#007600";
+        case 3: return "#1E9E1E";
+        case 4: return "#32B232";
+        case 5: return "#50D050";
+    }
+}
+
 function bounce(canvasId) {
     const canvas = document.getElementById(canvasId);
     const context = canvas.getContext("2d");
@@ -72,8 +83,59 @@ function control(canvasId) {
     });
 }
 
+function matrix(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const context = canvas.getContext("2d");
+    // canvas.width = window.innerWidth;
+    // canvas.height = window.innerHeight;
+    const width = canvas.width;
+    const height = canvas.height;
+    const matrixSize = 100;
+    const speedLimit = 5;
+    const changeRate = 30;
+
+    context.font = "30px Arial";
+
+    const A = [];
+
+    for (let i = 0; i < matrixSize; i++) {
+        c = String.fromCharCode(0x30A0 + Math.floor(Math.random() * 90));
+        x = Math.floor(Math.random() * width);
+        y = -10;
+        s = Math.floor(1 + Math.random() * speedLimit);
+        e = changeRate;  // expiration
+        A.push([c, x, y, s, e]);
+    }
+
+    function draw() {
+        context.clearRect(0, 0, width, height);
+        context.fillStyle = "black";
+        context.fillRect(0, 0, width, height);
+        // console.log(A[0][0], A[0][1], A[0][2]);
+        for (const I of A) {
+            context.fillStyle = greenColor(I[3]);
+            context.fillText(I[0], I[1], I[2] += I[3]);
+            I[4] -= (1 * I[3]);
+            if (I[4] < 0) {
+                I[0] = String.fromCharCode(0x30A0 + Math.floor(Math.random() * 90));
+                I[4] = changeRate;
+            }
+            if (I[2] > height) {
+                I[0] = String.fromCharCode(0x30A0 + Math.random() * 90);
+                I[1] = Math.floor((Math.random() * width));
+                I[2] = -10;
+                I[3] = Math.floor(1 + Math.random() * speedLimit);
+            }
+        }
+        window.requestAnimationFrame(draw);
+    }
+
+    window.requestAnimationFrame(draw);
+}
+
 // IIFE
 (function () {
     bounce("canvas1");
     control("canvas2");
+    matrix("canvas3");
 })();
