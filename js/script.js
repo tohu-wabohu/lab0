@@ -7,11 +7,12 @@ function fillCircle(context, x, y, radius, color = "red") {
 
 function greenColor(i) {
     switch (i) {
-        case 1: return "#005800";
-        case 2: return "#007600";
-        case 3: return "#1E9E1E";
-        case 4: return "#32B232";
-        case 5: return "#50D050";
+        case 1:  return "#005800";
+        case 2:  return "#007600";
+        case 3:  return "#1E9E1E";
+        case 4:  return "#32B232";
+        case 5:  return "#50D050";
+        default: return "#50D050";
     }
 }
 
@@ -118,6 +119,7 @@ function matrix(canvasId) {
         context.clearRect(0, 0, width, height);
         context.fillStyle = "black";
         context.fillRect(0, 0, width, height);
+
         for (const I of A) {
             if (I[Y] > height) {
                 I[C] = String.fromCharCode(0x30A0 + Math.random() * 90);
