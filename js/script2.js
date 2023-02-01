@@ -152,7 +152,7 @@ function initGame(gridSize, mines) {
     const height = canvas.height;
     const gridSize = 16;
     const cellSize = 40;
-    const mines = 10;
+    const mines = 40;
 
     initGame(gridSize, mines);
 
