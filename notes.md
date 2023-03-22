@@ -1,5 +1,16 @@
 # Notes
 
+## Network
+
+### Disable IPv6
+```
+# vi /etc/default/grub
+GRUB_CMDLINE_LINUX="ipv6.disable=1"
+GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"
+
+update-grub
+```
+
 ## HDD/SSD/...
 
 ### Wipe SSD disk
