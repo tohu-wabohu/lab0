@@ -2,8 +2,7 @@
 
 ## Linux
 
-###
-Get Ubuntu Server 22.04 iso
+### Get Ubuntu Server 22.04 iso
 ```
 wget https://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.iso
 ```
