@@ -64,5 +64,6 @@ docker_gwbridge
 docker network inspect docker_gwbridge
 
 
+docker swarm leave --force
 docker swarm init --advertise-addr 127.0.0.1 --listen-addr 127.0.0.1 --data-path-addr 127.0.0.1
 ```
