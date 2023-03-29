@@ -45,8 +45,10 @@ Change MTU
 ```
 # vi /etc/docker/daemon.json
 {
-  "mtu": 1454
+  "mtu": 1400
 }
+
+systemctl restart docker
 
 
 docker network rm docker_gwbridge
