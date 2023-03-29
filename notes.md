@@ -40,3 +40,27 @@ gluster volume remove-brick gluster_vol replica 3 gluster04:/gluster_vol force
 gluster peer detach gluster04
 ```
 
+## Docker
+Change MTU
+```
+# vi /etc/docker/daemon.json
+{
+  "mtu": 1454
+}
+
+
+docker network rm docker_gwbridge
+
+docker network create -d bridge \
+--subnet 172.18.0.0/16 \
+--opt com.docker.network.bridge.name=docker_gwbridge \
+--opt com.docker.network.bridge.enable_icc=false \
+--opt com.docker.network.bridge.enable_ip_masquerade=true \
+--opt com.docker.network.driver.mtu=1400 \
+docker_gwbridge
+
+docker network inspect docker_gwbridge
+
+
+docker swarm init --advertise-addr 127.0.0.1 --listen-addr 127.0.0.1 --data-path-addr 127.0.0.1
+```
