@@ -70,5 +70,5 @@ docker swarm init --advertise-addr 127.0.0.1 --listen-addr 127.0.0.1 --data-path
 
 Scale down/up all service in swarm:
 ```
-for i in $(docker service ls |grep samesystem |awk '{print $2}'); do echo $i; docker service scale ${i}=0; done
+for i in $(docker service ls |grep filter |awk '{print $2}'); do echo $i; docker service scale ${i}=0; done
 ```
