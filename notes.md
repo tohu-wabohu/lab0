@@ -68,12 +68,12 @@ docker swarm leave --force
 docker swarm init --advertise-addr 127.0.0.1 --listen-addr 127.0.0.1 --data-path-addr 127.0.0.1
 ```
 
-Scale down/up all service in swarm:
+#### Scale down/up all service in swarm
 ```
 for i in $(docker service ls |grep filter |awk '{print $2}'); do echo $i; docker service scale ${i}=0; done
 ```
 
-#### Docker Compose, docker-compose.yml, example:
+#### Docker Compose, docker-compose.yml, example
 ```
 version: "2.2"
 services:
@@ -95,6 +95,7 @@ services:
     command: sleep infinity
 ```
 
+#### Dockerfile example
 ```
 FROM ubuntu:20.04
 
