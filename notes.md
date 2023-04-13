@@ -41,7 +41,7 @@ gluster peer detach gluster04
 ```
 
 ## Docker
-Change MTU
+#### Change MTU
 ```
 # vi /etc/docker/daemon.json
 {
@@ -71,4 +71,46 @@ docker swarm init --advertise-addr 127.0.0.1 --listen-addr 127.0.0.1 --data-path
 Scale down/up all service in swarm:
 ```
 for i in $(docker service ls |grep filter |awk '{print $2}'); do echo $i; docker service scale ${i}=0; done
+```
+
+#### Docker Compose, docker-compose.yml, example:
+```
+version: "2.2"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    mem_limit: 4g
+    dns:
+      - 8.8.8.8
+      - 4.4.4.4
+
+  foobar:
+    image: ubuntu:20.04
+    build:
+      context: /data/build
+      dockerfile: Dockerfile-foobar
+    restart: always
+    command: sleep infinity
+```
+
+```
+FROM ubuntu:20.04
+
+SHELL ["/bin/bash", "-c"]
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+  procps \
+  iproute2 \
+  dnsutils \
+  iputils-ping \
+  git \
+  curl \
+  wget \
+  vim \
+  # ---- other packages -----
+  && rm -rf /var/lib/apt/lists/*
 ```
