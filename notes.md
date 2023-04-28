@@ -7,6 +7,22 @@
 wget https://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-live-server-amd64.iso
 ```
 
+### Zipping, Tarring, archiving, etc...
+#### Tar
+```
+tar -C /foobar_path/ -cvf foobar.tar foobar/
+tar -I lz4 -cvf foobar.tar.lz4 foobar/
+lz4 -d foobar.tar.lz4 | tar -xv
+```
+#### Rsync
+```
+rsync -azP /foobar /destination/
+```
+#### SCP
+```
+scp -c aes128-ctr 10.0.0.1:/tmp/foobar.tar.gz .
+```
+
 ## Network
 
 ### Disable IPv6
