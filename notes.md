@@ -17,6 +17,15 @@ lz4 -d foobar.tar.lz4 | tar -xv
 #### Rsync
 ```
 rsync -azP /foobar /destination/
+  -a (or --archive):          This option is short for "archive" and syncs directories recursively.
+                                It also preserves symbolic links, file permissions, user &  group ownerships and timestamps.
+
+  -z (or --compress):           This option compresses data during the transfer, which can speed up the transfer process
+                                if you're dealing with large files.
+
+  -P (or --partial --progress): This option combines two functionalities.
+                                The --partial part allows resuming interrupted transfers,
+                                while --progress shows the progress during the transfer.
 ```
 #### SCP
 ```
