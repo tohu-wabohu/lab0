@@ -148,3 +148,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 docker swarm join-token worker                # as a worker node
 docker swarm join-token manager               # as a manager node
 ```
+## KVM
+Cheatsheet:
+```
+virsh autostart myvm			# Enable autostart of VM
+virsh autostart myvm --disable  	# Disable autostart of VM
+virsh list --all --autostart		# List VMs which are masrked for autostart
