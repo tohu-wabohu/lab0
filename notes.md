@@ -17,6 +17,7 @@ lz4 -d foobar.tar.lz4 | tar -xv
 #### Rsync
 ```
 rsync -azP /foobar /destination/
+
   -a (or --archive):            This option is short for "archive" and syncs directories recursively.
                                 It also preserves symbolic links, file permissions, user &  group
                                 ownerships and timestamps.
