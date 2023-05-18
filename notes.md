@@ -67,6 +67,29 @@ gluster volume remove-brick gluster_vol replica 3 gluster04:/gluster_vol force
 gluster peer detach gluster04
 ```
 
+## Git
+Quick add, commit, push:
+```
+git add -A; git commit -m "up"; git push
+git add -A; git commit -m "up"; git push --force-with-lease    # after branch rebase
+```
+
+Delete branches:
+```
+git branch -d localBranchName                    # delete branch locally
+git push origin --delete remoteBranchName        # delete branch remotely
+```
+
+Get hash:
+```
+git rev-parse --short HEAD
+```
+
+After fetching, remove any remote-tracking branches which no longer exist on the remote:
+```
+git fetch --prune
+```
+
 ## Docker
 #### Change MTU
 ```
