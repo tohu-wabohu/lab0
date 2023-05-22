@@ -177,3 +177,9 @@ Cheatsheet:
 virsh autostart myvm			# Enable autostart of VM
 virsh autostart myvm --disable  	# Disable autostart of VM
 virsh list --all --autostart		# List VMs which are masrked for autostart
+```
+
+Resize image:
+```
+qemu-img resize disk01.qcow2 +100G
+```
