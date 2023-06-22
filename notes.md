@@ -65,6 +65,9 @@ gluster volume heal gluster_vol info
 # Remove
 gluster volume remove-brick gluster_vol replica 3 gluster04:/gluster_vol force
 gluster peer detach gluster04
+
+# Check
+gluster volume status gluster_vol shd
 ```
 
 ## Git
